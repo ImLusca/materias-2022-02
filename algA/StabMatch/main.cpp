@@ -43,7 +43,7 @@ void formaCasais(MATINT listaPrefsH, MATINT listaPrefsM)
     std::unordered_map<int, int> casais;
     std::vector<int> rejeicoes(listaPrefsH.size(), 0);
 
-    for (int i = 0; i < listaPrefsH.size(); i++)
+    for (int i = 0; i < (int)listaPrefsH.size(); i++)
     {
         solteirosH.push(i);
         solteirosM.insert(i);
@@ -56,40 +56,36 @@ void formaCasais(MATINT listaPrefsH, MATINT listaPrefsM)
         int numRejeicoes = rejeicoes[homem];
         solteirosH.pop();
 
-        for (int i = 0; i < listaPrefsH.size(); i++)
+        for (int i = numRejeicoes; i < (int)listaPrefsH.size(); i++, rejeicoes[homem]++)
         {
 
-            int preferencia = listaPrefsH[homem][i + numRejeicoes];
+            int preferencia = listaPrefsH[homem][i];
 
             // Verificar se a mulher está solteira
-            // Se sim, engaja os dois e tira das estruturas de solteiros
-            // Se não, compara preferencia da mulher com casal atual
-            // volta o homem de menor preferencia para o final da queue
-
             if (solteirosM.find(preferencia) != solteirosM.end())
             {
+                // Se sim, engaja os dois
                 casais[preferencia] = homem;
                 solteirosM.erase(preferencia);
                 break;
             }
 
+            // Se não, compara preferencia da mulher com casal atual
             int atual = casais[preferencia];
 
-            if (listaPrefsM[preferencia][atual] < listaPrefsM[preferencia][homem])
+            if (listaPrefsM[preferencia][atual] > listaPrefsM[preferencia][homem])
             {
-                rejeicoes[homem]++;
-                continue;
+                // Se trocar de par, volta o homem de menor preferencia para o final da queue
+                solteirosH.push(atual);
+                casais[preferencia] = homem;
+                break;
             }
-
-            solteirosH.push(atual);
-            casais[preferencia] = homem;
-            break;
         }
     }
 
-    for (int i = 0; i < listaPrefsH.size(); i++)
+    for (int i = 0; i < (int)listaPrefsH.size(); i++)
     {
-        for (int j = 0; j < listaPrefsH.size(); j++)
+        for (int j = 0; j < (int)listaPrefsH.size(); j++)
         {
             if (casais[j] == i)
             {
@@ -102,9 +98,9 @@ void formaCasais(MATINT listaPrefsH, MATINT listaPrefsM)
 void printaMatriz(MATINT mtrx)
 {
 
-    for (int i = 0; i < mtrx.size(); i++)
+    for (int i = 0; i < (int)mtrx.size(); i++)
     {
-        for (int j = 0; j < mtrx.size(); j++)
+        for (int j = 0; j < (int)mtrx.size(); j++)
         {
             printf("%i ", mtrx[i][j]);
         }
@@ -124,10 +120,10 @@ int main()
         int numPessoas;
         scanf("%i", &numPessoas);
 
-        MATINT preferenciasH = leListaPreferencias(numPessoas, 'M');
         MATINT preferenciasM = leListaPreferencias(numPessoas, 'W');
-        formaCasais(preferenciasH, preferenciasM);
+        MATINT preferenciasH = leListaPreferencias(numPessoas, 'M');
 
+        formaCasais(preferenciasH, preferenciasM);
     }
 
     return 0;
