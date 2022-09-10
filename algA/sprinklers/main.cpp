@@ -1,12 +1,39 @@
+// Lucas Pereira Pacheco nºusp: 12543930
+
 #include <stdio.h>
 #include <math.h>
 #include <vector>
 #include <algorithm>
 
-void calculaSprinklers(int numInputs)
+#define INVALID return -1;
+
+int contaSprinklers(int numInputs);
+int contaRetangulos(std::vector<std::pair<int, int>> sprinklers, int larguraCampo);
+std::vector<std::pair<int, int>> calculaRetangulos(int alturaCampo, int numInputs);
+
+int main()
+{
+    int numInputs;
+    while ((scanf("%i", &numInputs) != EOF))
+    {
+        printf("%i\n", contaSprinklers(numInputs));
+    }
+}
+
+int contaSprinklers(int numInputs)
 {
     int largura, altura;
     scanf("%i %i", &largura, &altura);
+
+    std::vector<std::pair<int, int>> sprinklers = calculaRetangulos(altura, numInputs);
+
+    if (!sprinklers.size()) INVALID
+
+    return contaRetangulos(sprinklers, largura);
+}
+
+std::vector<std::pair<int, int>> calculaRetangulos(int alturaCampo, int numInputs)
+{
 
     std::vector<std::pair<int, int>> sprinklers;
 
@@ -16,39 +43,37 @@ void calculaSprinklers(int numInputs)
 
         scanf("%i %i", &position, &radius);
 
-        if (radius <= altura)
-            continue;
+        if (radius * 2 <= alturaCampo) continue;
 
-        double areaCoberta = sqrt(fabs(pow(altura, 2) / 4 - pow(radius, 2)));
+        double areaCoberta = sqrt(fabs(pow(alturaCampo, 2) / 4 - pow(radius, 2)));
 
         std::pair<int, int> novoSprinkler{position - areaCoberta, position + areaCoberta};
 
         sprinklers.push_back(novoSprinkler);
     }
 
+    return sprinklers;
+}
+
+int contaRetangulos(std::vector<std::pair<int, int>> sprinklers, int larguraCampo)
+{
     std::sort(sprinklers.begin(), sprinklers.end());
 
-    int rightestPoint = 0, left = sprinklers[0].first;
-    int contagemSprinklers = 0;
+    int rightestPoint = 0, contagemSprinklers = 0;
 
-    for (int i = 0; i < sprinklers.size(); i++)
+    for (int i = 0; i < (int)sprinklers.size(); i++)
     {
-        if (sprinklers[i].first > rightestPoint)
-        {
-            printf("-1");
-            return;
-        }
+        if (sprinklers[i].first > rightestPoint) INVALID
 
         int newRight = rightestPoint;
 
-        while (i < sprinklers.size() && sprinklers[i].first <= rightestPoint)
+        while (i < (int)sprinklers.size() && sprinklers[i].first <= rightestPoint)
         {
             if (sprinklers[i].second > newRight)
-            {
                 newRight = sprinklers[i].second;
-            }
+
             i++;
-        } 
+        }
 
         i--;
 
@@ -56,28 +81,12 @@ void calculaSprinklers(int numInputs)
         {
             contagemSprinklers++;
             rightestPoint = newRight;
-            if (rightestPoint >= largura)
-                break;
-
+            if (rightestPoint >= larguraCampo) break;
+            
             continue;
         }
 
-        printf("-1");
-        return;
+        INVALID
     }
-}
-
-int main()
-{
-
-    // l -> largura
-    // w -> altura
-    // n -> num of sprinklers
-
-    // pos and radius
-    int numInputs;
-    while ((scanf("%i", &numInputs) != EOF))
-    {
-        calculaSprinklers(numInputs);
-    }
+    return contagemSprinklers;
 }

@@ -1,0 +1,40 @@
+Question:
+
+Design the software aspect of the micro-architecture for the following instruction set specifications.
+
+Registers: R0, R1, R2 (each 8 bits)
+Memory address space: 64k bytes.
+Instructions:
+(a) Copy value from ra to rb
+MOV ra, rb
+
+(b) Copy value from r to mem.
+MOV r, mem
+
+(c) Copy value from mem to r.
+MOV mem, r
+
+(d) Place value of ra + rb into ra
+ADD ra, rb
+
+(e) Place value of ra - rb into ra
+SUB ra, rb
+
+(f) Place value of ra OR rb, ra AND rb, ra XOR rb (respectively) into ra
+OR ra, rb
+AND ra, rb
+XOR ra, rb
+
+(g) Jump to address location mem
+JMP mem
+
+(h) Jump by a relative position (-128 to 127) if ra is greater or equal to rb.
+BGE ra, rb, rel
+
+(i) Jump by a relative position (-128 to 127) if ra is equal to rb.
+BEQ ra, rb, rel
+
+(j) Halt the execution.
+HLT
+
+After that, write a simple simulator that takes as input an initial state of the memory, and starts executing code at address 0x0000.
