@@ -69,10 +69,14 @@ def main():
 
     # preparando dados para enviar a gpu
 
-    vertices = np.zeros(2500, [("position", np.float32, 2)])
+    vertices = np.zeros(4, [("position", np.float32, 2)])
 
-    for i in range(2500):
-        vertices['position'][i] = (random.uniform(-1, 1), random.uniform(-1, 1))
+    vertices['position'] = [
+        (0.3, 0.3),
+        (0.3, -0.3),
+        (-0.3, 0.3),
+        (-0.3, -0.3)
+    ]
 
     # requisitando slot da GPU para enviar dados vindos da CPU
     buffer = glGenBuffers(1)
@@ -101,8 +105,9 @@ def main():
         glClear(GL_COLOR_BUFFER_BIT)
         glClearColor(1.0, 1.0, 1.0, 1.0)
 
-        #gl Draw arrays
-        glDrawArrays(GL_POINTS,0, 2501)
+        # gl Draw arrays
+        # glDrawArrays(GL_TRIANGLE_FAN, 0, 4)
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4)
 
         glfw.swap_buffers(janela)
 

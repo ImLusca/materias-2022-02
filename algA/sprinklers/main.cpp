@@ -4,6 +4,7 @@
 #include <math.h>
 #include <vector>
 #include <algorithm>
+#include <limits.h>
 
 #define INVALID return -1;
 
@@ -43,10 +44,10 @@ std::vector<std::pair<int, int>> calculaRetangulos(int alturaCampo, int numInput
 
         scanf("%i %i", &position, &radius);
 
-        if (radius * 2 <= alturaCampo) continue;
+        if (radius * 2 <= alturaCampo || radius > 1000) continue;
 
         double areaCoberta = sqrt(fabs(pow(alturaCampo, 2) / 4 - pow(radius, 2)));
-
+    
         std::pair<int, int> novoSprinkler{position - areaCoberta, position + areaCoberta};
 
         sprinklers.push_back(novoSprinkler);
