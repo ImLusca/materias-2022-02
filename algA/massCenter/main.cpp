@@ -8,7 +8,7 @@
 #include <limits.h>
 #include <math.h>
 
-void funcao(int numCapsulas, int numAmostras);
+void CalculaMassas(int numCapsulas, int numAmostras);
 
 int main()
 {
@@ -17,11 +17,11 @@ int main()
     while ((scanf("%i %i", &numCapsulas, &numAmostras) != EOF))
     {
         printf("Set #%i\n", numSet++);
-        funcao(numCapsulas, numAmostras);
+        CalculaMassas(numCapsulas, numAmostras);
     }
 }
 
-void funcao(int numCapsulas, int numAmostras)
+void CalculaMassas(int numCapsulas, int numAmostras)
 {
 
     std::vector<int> amostras(numAmostras);
