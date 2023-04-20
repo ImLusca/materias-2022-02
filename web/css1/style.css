@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,700;1,500&display=swap");
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+p,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+figure {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.clicavel:hover {
+  transform: scale(1.1);
+}
+.clicavel:active {
+  transform: scale(0.9);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #e8f0f0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+  padding-top: 1.5vh;
+}
+
+body > * {
+  width: 50vw;
+  margin-bottom: 2vh;
+  border-radius: 4px;
+  padding: 1vh 1vw 1.5vh 1vw;
+  background-color: #ffffffb8;
+  box-shadow: 0 3px 8px #000011ba;
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+header h3 {
+  margin: 0.8vh 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+header figure img {
+  height: 30vh;
+  border-radius: 100%;
+  border: 3px solid #000;
+}
+header figure figcaption {
+  font-size: 2.5rem;
+  font-weight: 200;
+  margin-top: 1vh;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+nav .redeSocial img {
+  width: 3.5rem;
+  margin: auto;
+}
+
+nav .redeSocial {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+main {
+  text-align: center;
+}
+h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+main article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+main article img {
+  height: 35vh;
+}
+
+main article .review {
+  width: 100%;
+  height: 35vh;
+  padding-right: 2rem;
+  text-align: justify;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+main article .review h4 {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.review p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0.5vh 0;
+}
+
+.review button {
+  font-size: 1.2rem;
+  font-weight: 300;
+  padding: 0.5vh 1vw;
+  border-radius: 4px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 35%;
+  align-self: end;
+}
+
+footer p {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+footer ul {
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 3vh auto;
+  justify-content: center;
+}
+
+footer li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: .3s;
+}
